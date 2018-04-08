@@ -2,29 +2,39 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://codepen.io/chriddyp/pen/bWLwgP.css">
+    <title>M&A Database</title>
+
   </head>
   <body>
-    <table>
+    <div id="database">
 
-    </table>
-  <script>
-  var table = document.querySelector('table')
-  var requestURL = 'https://mbkupfer.github.io/data/madb.json';
-  var request = new XMLHttpRequest();
-  request.open('GET', requestURL);
-  request.responseType = 'json';
-  request.send();
-  request.onload = function(){
-    var transactions = request.response;
-    populateTable(transactions);
-  }
+    
+    </button>
+      <table>
+        <thead>
+          <th>Quarter<button class="sort" data-sort="quarter">sort</th>
+          <th>Region<input id="region-search-field" placeholder="Search regions"/></th>
+          <th>Acquirer<input id="acquirer-search-field" placeholder="Search acquirers"/></th>
+          <th>Target Segment<input id="segment-search-field" placeholder="Search seegments"/></th></th>
+          <th>Hyperlink</th>
+        </thead>
+        <tbody class="list">
+          <tr>
+            <td class="quarter"></td>
+            <td class="regions"></td>
+            <td class="acquirer"></td>
+            <td class="targetSegment"></td>
+            <td class="hyperlink"></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+    <script src="lists.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="ma-db.js"></script>
 
-  function populateTable(jsonObj){
-    var region = jsonObj['Region'];
 
-  }
-
-  </script>
+    </script>
   </body>
 </html>
