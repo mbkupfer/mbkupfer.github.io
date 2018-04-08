@@ -5,6 +5,26 @@
     <title></title>
   </head>
   <body>
+    <table>
 
+    </table>
+  <script>
+  var table = document.querySelector('table')
+  var requestURL = 'https://mbkupfer.github.io/data/madb.json';
+  var request = new XMLHttpRequest();
+  request.open('GET', requestURL);
+  request.responseType = 'json';
+  request.send();
+  request.onload = function(){
+    var transactions = request.response;
+    populateTable(transactions);
+  }
+
+  function populateTable(jsonObj){
+    var region = jsonObj['Region'];
+
+  }
+
+  </script>
   </body>
 </html>
