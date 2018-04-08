@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Our superheroes</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+
+      <header>
+
+      </header>
+
+      <section>
+
+      </section>
+      <table>
+        <!--
+        <tr>
+          <td>col1</td>;
+          <td>col2</td>;
+          <td>col3</td>;
+        </tr>
+        <tr>
+          <td>col1</td>;
+          <td>col2</td>;
+          <td>col3</td>;
+        </tr>
+      -->
+      </table>
+
+    <script>
+    var header = document.querySelector('header');
+    var section = document.querySelector('section');
+    var table = document.querySelector('table');
+    var requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function() {
+      var superHeroes = request.response;
+      populateTable(superHeroes);
+    }
+
+
+    function populateTable(jsonObj) {
+      var heroes = jsonObj['members'];
+      for(var i = 0; i < heroes.length; i++){
+        var row = document.createElement('tr');
+        var name = document.createElement('td');
+        var age = document.createElement('td');
+
+        nameText = document.createTextNode(heroes[i].name);
+
+        ageText = document.createTextNode(heroes[i].age);
+
+        name.appendChild(nameText);
+        age.appendChild(ageText);
+        row.appendChild(name);
+        row.appendChild(age);
+        table.appendChild(row);
+      }
+    }
+
+
+
+    </script>
+  </body>
+</html>
