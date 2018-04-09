@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,25 +16,20 @@
       <table>
         <thead>
           <th>Quarter<button class="sort" data-sort="quarter">sort</th>
-          <th>Region<input id="region-search-field" placeholder="Search regions"/></th>
-          <th>Acquirer<input id="acquirer-search-field" placeholder="Search acquirers"/></th>
-          <th>Target Segment<input id="segment-search-field" placeholder="Search segments"/></th></th>
+          <th>Region<input id="region" class="filter" placeholder="Search regions"/></th>
+          <th>Acquirer<input id="acquirer" class="filter" placeholder="Search acquirers"/></th>
+          <th>Target Segment<input id="targetSegment" class="filter" placeholder="Search segments"/></th></th>
           <th>Hyperlink</th>
         </thead>
         <tbody class="list">
-          <tr>
-            <td class="quarter"></td>
-            <td class="regions"></td>
-            <td class="acquirer"></td>
-            <td class="targetSegment"></td>
-            <td class="hyperlink"></td>
-          </tr>
+
         </tbody>
       </table>
   </div>
     <script src="lists.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="ma-db.js"></script>
+    <!-- <script src="ma-db.js"></script> -->
+    <script src="ma-db-branch.js"></script>
 
 
     </script>

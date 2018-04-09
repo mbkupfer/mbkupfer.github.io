@@ -11,19 +11,15 @@ request.onload = function(){
     valueNames: [ 'quarter', 'region', 'acquirer', 'targetSegment', 'hyperlink']
   };
 
-  var userList = new List('database', options);
-  $('#region-search-field').on('keyup', function() {
-    var searchString = $(this).val();
-    userList.search(searchString, ['region']);
-  });
-  $('#acquirer-search-field').on('keyup', function() {
-    var searchString = $(this).val();
-    userList.search(searchString, ['acquirer']);
-  });
-  $('#segment-search-field').on('keyup', function() {
-    var searchString = $(this).val();
-    userList.search(searchString, ['targetSegment']);
-  });
+  var transactionList = new List('database', options);
+  $(".filter").keyup(function(){
+    transactionList.filter(item => {
+      return ['region', 'acquirer', 'targetSegment'].every(name => {
+        var value = $("#"+name).val().toLowerCase();
+        return item.values()[name].toLowerCase().includes(value)
+      });
+    });
+  })
 }
 
 function populateTable(jsonObj){
