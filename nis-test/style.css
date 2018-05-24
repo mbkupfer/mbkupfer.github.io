@@ -1,0 +1,167 @@
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+- Base styles
+- Table
+- Misc. elements
+- Tabs
+*/
+
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+body {
+  background-color: white;
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgb(50, 50, 50);
+  margin: 0;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+footer {
+  width: 1200px;
+  margin: auto;
+  font-size: 9px;
+  margin-top:20px;
+}
+
+/* Table
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+table {
+  position: relative;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+thead, img {
+  vertical-align: text-top;
+  font-size: 15px;
+}
+
+th input {
+  width: 100%;
+}
+
+th, td {
+  border-bottom: 1px solid #e1e1e1;
+  text-align: left;
+  padding: 3px 6px;
+}
+
+tbody tr:hover {
+  background: rgb(227, 232, 236);
+}
+
+/* Create widths for table */
+.region, .quarter {
+  width: 84px;
+}
+.targetName {
+  width: 188px;
+}
+.targetSegment {
+  width: 173px;
+}
+.targetCountry {
+  width: 130px;
+}
+.acquirerName {
+  width: 179px;
+}
+.price {
+  width: 192px;
+}
+.link {
+  width: 74px;
+}
+
+/* Misc. elements
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#logo {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  height: 87px;
+  width: 150px;
+}
+
+.quick-stats {
+  width: auto;
+  padding: 0 10px;
+  margin-left: auto;
+  border: solid rgb(200,200,200) 2px;
+  border-radius: 5%;
+
+}
+.quick-stats p {
+  font-size: 16px;
+}
+
+.header {
+  display: flex;
+  width: 1200px;
+  margin: 200px auto 50px auto;
+  color: black;
+  border: 0px;
+}
+
+
+
+/* Tabs
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Style the tabs wrapper */
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+  width: 1200px;
+  margin: 0 auto 10px;
+  height: 47px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tabs button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.1s;
+}
+
+/* Change background color of buttons on hover */
+.tabs button:hover {
+    background-color: #ddd;
+    border-top: rgba(50,50,255,.25) 2px solid;
+}
+
+/* Little bit of javascript/css hackery over here :) */
+button.tab.active {
+    background-color: #ccc;
+    border-top: rgb(50,50,255) 2px solid;
+}
+
+/* Style the tab content */
+.tabcontent {
+  width: 1200px;
+  margin: auto;
+  padding: 6px 12px;
+  border-top: solid rgb(200,200,200) 1px;
+}
+
+.tab.download:hover {
+  color: #0074D9;
+}
+
+#csv-icon {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  top: -6px;
+  left: 7px;
+}

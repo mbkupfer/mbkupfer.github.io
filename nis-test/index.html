@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>M&A Database</title>
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+
+  </head>
+  <body>
+    <img src="images/SIA_logo_black.png" id="logo"/>
+
+    <div class="header">
+      <h1>SIA Workforce Solutions M&amp;A Database</h1>
+      <div class="quick-stats"></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="openTab(event, 'database')" id="defaultOpen">Database</button>
+      <button class="tab" onclick="openTab(event, 'visualizations')">Vizualizations</button>
+      <button class="tab" onclick="openTab(event, 'notes')">Notes</button>
+      <button class="tab download" onclick="downloadCSV()">Download<img src="images/csv-icon.png" onclick="downloadCSV()" id="csv-icon"></button>
+    </div>
+
+    <div class="tabcontent" id="database">
+      <table>
+        <thead>
+          <th class='region'>
+             <p>Region <img src="images/sort-arrows.png" class="sort" data-sort="region"></p>
+             <input id="region" class="filter" placeholder="Search"/>
+          </th>
+          <th class='quarter'>
+             <p>Quarter <img src="images/sort-arrows.png" class="sort" data-sort="quarter"></p>
+             <input id="quarter" class="filter" placeholder="Search"/>
+          </th>
+          <th class='targetName'>
+             <p>Target <img src="images/sort-arrows.png" class="sort" data-sort="targetName"></p>
+             <input id="targetName" class="filter" placeholder="Search by targets"/>
+          </th>
+          <th class='targetSegment'>
+             <p>Target Segment <img src="images/sort-arrows.png" class="sort" data-sort="targetSegment"></p>
+             <input id="targetSegment" class="filter" placeholder="Search segments"/>
+          </th>
+          <th class='targetCountry'>
+             <p>Target HQ <img src="images/sort-arrows.png" class="sort" data-sort="targetCountry"></p>
+             <input id="targetCountry" class="filter" placeholder="Search target country"/>
+          </th>
+          <th class='acquirerName'>
+             <p>Acquirer <img src="images/sort-arrows.png" class="sort" data-sort="acquirerName"></p>
+             <input id="acquirerName" class="filter" placeholder="Search acquirers"/>
+          </th>
+          <th class='price'>
+            <p>Price</p>
+          </th>
+          <th class='link'>
+            <p>Additional info</p>
+          </th>
+        </thead>
+        <tbody class="list">
+        </tbody>
+      </table>
+  </div>
+
+  <div class="tabcontent" id="visualizations">
+    <div id="staticViz"></div>
+    <div id="staticPie"></div>
+  </div>
+
+  <div class="tabcontent" id="notes">
+    <h1>About the M&amp;A Database</h1>
+    <p>
+      This tool contains a database of mergers and acquisitions related to
+      companies in the staffing and workforce solutions industry.The database
+      contains information collected on over transactions that occurred between
+      January 2014 and May 2017.
+    </p>
+    <p>
+      The &ldquo;M&amp;A Dashboard&rdquo; contains drop-down menus that allow
+      the user to select a subset of transactions based on criteria such as
+      geographic region, industry segment, and date range. The &ldquo;M&amp;A
+      List&rdquo; contains the complete list of transactions in one spreadsheet
+      which can be sorted and filtered.
+    </p>
+    <p>For each transaction, the database provides a row of information that
+      includes the date of the acquisition announcement, the names and locations
+       of both the acquirer and target company, notes on the acquisition price,
+        if any, and a link to the corresponding news item in Staffing Industry
+        Analysts&rsquo; Daily News.
+    </p>
+    <h2>Notes and definitions</h2>
+    <h2>Date of announcement</h2>
+    <p>
+      The &ldquo;Date of announcement&rdquo; refers to the date in which the
+      transaction was reported in SIA's Daily News. Note that the date in which
+      a merger/acquisition is officially completed or closed may be either
+      before or after the date of announcement.
+    </p>
+    <h2>Region</h2>
+    <p>
+      Regions include Americas (North and South America), EMEA (Europe,
+      Middle East, and Africa), and APAC (Asia Pacific). Note that this
+      filters the database based on the region of the target company.</p>
+    <h2>Target segment and target workforce solution</h2>
+    <p>
+      The &ldquo;Target segment&rdquo; filer allows the user to search
+      transactions based on various skill segments of temporary staffing,
+      direct hire, and retained search. The &ldquo;Target workforce
+      solutions&rdquo; menu allows searching based on a variety of workforce
+      solutions other than temporary staffing, direct hire, and retained search.
+      Definitions for many of these solutions can be found at the following link:
+    </p>
+  </div>
+
+  <footer>
+    <p>PROPRIETARY DATA, DO NOT DISTRIBUTE OUTSIDE YOUR ORGANIZATION. Your company’s use of this report precludes distribution of its contents, in whole or in part, to other companies or individuals outside your organization in any form – electronic, written or verbal – without the express written permission of Staffing Industry Analysts. It is your organization’s responsibility to maintain and protect the confidentiality of this report.</p>
+    <p>Staffing Industry Analysts | 1975 W. El Camino Real, Ste. 304 | Mountain View, CA 94040 | 800.950.9496 | www.staffingindustry.com </p>
+    <p>Confidential Report – NOT for Distribution | ©2018 by Crain Communications Inc. All rights reserved.</p>
+  </footer>
+
+
+    <script src="lists.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="lib/ma-db.js"></script>
+    <script src="lib/tabs.js"></script>
+    <script>
+      var trace1 = {
+        x: [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
+        y: [107, 126, 77, 57, 74, 46, 74, 69, 70, 92, 69, 88],
+
+        marker: {color: 'rgb(255,83,109)'},
+        type: 'bar'
+      };
+
+      var data = [trace1];
+
+      var layout = {
+        title: 'Staffing mergers and acquisitions',
+        xaxis: {
+          tickangle: -45,
+          tickfont: {
+          size: 14,
+          color: 'rgb(107,107,107)',
+          }
+        },
+        yaxis: {
+          title: '# of M&A Deals',
+          titlefont: {
+            size: 14,
+            color: 'rgb(107,107,107)'
+          }
+        },
+      };
+      Plotly.newPlot('staticViz', data, layout, {displayModeBar: false});
+    </script>
+
+    <script>
+        var data = [{
+          values: [.21,.15,.14,.06,.08,.07,.09,.07,.02,.11],
+          labels: ['Healthcare','IT','General Professional','Engineering/Design', 'Other Professional','General', 'Industrial','General Commercial', 'Office/Clerical','Place and Search'],
+          type: 'pie'
+        }];
+
+        var layout = {
+          title: 'Percent of M&A Deals by Segment, 2017',
+          width: 700,
+          height: 500
+        }
+
+          Plotly.newPlot('staticPie', data,layout, {displayModeBar: false} );
+    </script>
+
+    </script>
+  </body>
+</html>
